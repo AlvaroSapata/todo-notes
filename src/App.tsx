@@ -4,7 +4,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { NewNote } from "./NewNote";
 import { useLocalStorage } from "./useLocalStorage";
 import { useMemo } from "react";
-import { v4 as uuiV4 } from "uuid";
+import { v4 as uuidV4 } from "uuid";
+import { NoteList } from "./NoteList";
 
 export type Note = {
   id: string;
@@ -32,7 +33,7 @@ export type Tag = {
 
 function App() {
   const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
-  const [tags, setTags] = useLocalStorage<RawNote[]>("TAGS", []);
+  const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
 
   const notesWithTags = useMemo(() => {
     return notes.map((note) => {
@@ -47,16 +48,29 @@ function App() {
     setNotes((prevNotes) => {
       return [
         ...prevNotes,
-        { ...data, id: uuiV4(), tagsIds: tags.map((tag) => tag.id) },
+        { ...data, id: uuidV4(), tagsIds: tags.map((tag) => tag.id) },
       ];
     });
+  }
+
+  function addTag(tag: Tag) {
+    setTags((prev) => [...prev, tag]);
   }
 
   return (
     <Container className="my-4">
       <Routes>
-        <Route path="/" element={<h1>Hello world!</h1>} />
-        <Route path="/new" element={<NewNote onSubmit={onCreateNote} />} />
+        <Route path="/" element={<NoteList />} />
+        <Route
+          path="/new"
+          element={
+            <NewNote
+              onSubmit={onCreateNote}
+              onAddTag={addTag}
+              availableTags={tags}
+            />
+          }
+        />
         <Route path="/:id" element={<h1>new</h1>}>
           <Route index element={<h1>Show</h1>} />
           <Route path="edit" element={<h1>edit</h1>} />
