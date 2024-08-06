@@ -1,3 +1,13 @@
+:root {
+  --primary-bg-color: #1f1f1f;
+  --secondary-bg-color: #303134;
+  --highlight-color: #76abae;
+  --text-color-main: #fffdfd;
+  --text-color-secondary: #99b4df;
+  --text-color-third: #757575;
+  --textarea-bg-color: #0000ff; /* Color azul para el fondo del textarea */
+}
+
 .card {
   transition: translate ease-in-out 100ms, box-shadow ease-in-out 100ms;
 }
