@@ -87,8 +87,8 @@ Contributions are welcome! If you would like to contribute to this project, plea
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Links
-- [GitHub Repository](https://github.com/AlvaroSapata/translator)
-- [Live Application](https://translatorclone.netlify.app/)
+- [GitHub Repository](https://github.com/AlvaroSapata/todo-notes)
+- [Live Application](https://mynotestodo.netlify.app/)
 
 ## Contact
 For any inquiries, please contact [alvaromfdv@gmail.com](mailto:alvaromfdv@gmail.com).
@@ -98,6 +98,8 @@ For any inquiries, please contact [alvaromfdv@gmail.com](mailto:alvaromfdv@gmail
 - [TypeScript Documentation](https://www.typescriptlang.org/docs/)
 - [Vite](https://vitejs.dev/)
 - [React-Bootstrap](https://react-bootstrap.github.io/)
-- [OpenAI API Reference](https://platform.openai.com/docs/api-reference)
+- [React-Select](https://react-select.com/)
+- [React-Markdown](https://github.com/remarkjs/react-markdown)
+- [UUID](https://www.npmjs.com/package/uuid)
 - [ESLint](https://eslint.org/)
 - [Vitest](https://vitest.dev/)
