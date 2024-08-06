@@ -14,6 +14,7 @@ import ReactSelect from "react-select";
 import { Tag } from "./App";
 import styles from "./NoteList.module.css";
 
+// Type definitions for SimplifiedNote, NoteListProps, and EditTagsModalProps
 type SimplifiedNote = {
   tags: Tag[];
   title: string;
@@ -26,6 +27,7 @@ type NoteListProps = {
   onDeleteTag: (id: string) => void;
   onUpdateTag: (id: string, label: string) => void;
 };
+
 type EditTagsModalProps = {
   availableTags: Tag[];
   handleClose: () => void;
@@ -34,6 +36,7 @@ type EditTagsModalProps = {
   onUpdateTag: (id: string, label: string) => void;
 };
 
+// NoteList component to display and filter notes
 export function NoteList({
   availableTags,
   notes,
@@ -44,6 +47,7 @@ export function NoteList({
   const [title, setTitle] = useState("");
   const [editTagsModalIsOpen, setEditTagsModalIsOpen] = useState(false);
 
+  // Memoize the filtered notes based on the selected tags and title
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
       return (
@@ -59,6 +63,7 @@ export function NoteList({
 
   return (
     <>
+      {/* Header with title and buttons */}
       <Row className="align-items-center mb-4">
         <Col>
           <h1>Notes</h1>
@@ -77,6 +82,7 @@ export function NoteList({
           </Stack>
         </Col>
       </Row>
+      {/* Form for filtering notes by title and tags */}
       <Form>
         <Row className="mb-4">
           <Col>
@@ -112,6 +118,7 @@ export function NoteList({
           </Col>
         </Row>
       </Form>
+      {/* Display the filtered notes */}
       <Row xs={1} sm={2} lg={3} xl={4} className="g-3">
         {filteredNotes.map((note) => (
           <Col key={note.id}>
@@ -119,6 +126,7 @@ export function NoteList({
           </Col>
         ))}
       </Row>
+      {/* Edit tags modal */}
       <EditTagsModal
         onUpdateTag={onUpdateTag}
         onDeleteTag={onDeleteTag}
@@ -130,6 +138,7 @@ export function NoteList({
   );
 }
 
+// NoteCard component to display individual notes
 function NoteCard({ id, title, tags }: SimplifiedNote) {
   return (
     <Card
@@ -162,6 +171,7 @@ function NoteCard({ id, title, tags }: SimplifiedNote) {
   );
 }
 
+// EditTagsModal component to edit tags
 function EditTagsModal({
   availableTags,
   handleClose,

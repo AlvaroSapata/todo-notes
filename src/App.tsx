@@ -10,6 +10,7 @@ import { NoteLayout } from "./NoteLayout";
 import { Note } from "./Note";
 import { EditNote } from "./EditNote";
 
+// Type definitions for Note, RawNote, RawNoteData, NoteData, and Tag
 export type Note = {
   id: string;
 } & NoteData;
@@ -23,6 +24,7 @@ export type RawNoteData = {
   markdown: string;
   tagsIds: string[];
 };
+
 export type NoteData = {
   title: string;
   markdown: string;
@@ -35,9 +37,11 @@ export type Tag = {
 };
 
 function App() {
+  // Custom hook to manage local storage for notes and tags
   const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
   const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
 
+  // Memoize notes with their associated tags for optimization
   const notesWithTags = useMemo(() => {
     return notes.map((note) => {
       return {
@@ -47,6 +51,7 @@ function App() {
     });
   }, [notes, tags]);
 
+  // Function to create a new note
   function onCreateNote({ tags, ...data }: NoteData) {
     setNotes((prevNotes) => {
       return [
@@ -55,6 +60,8 @@ function App() {
       ];
     });
   }
+
+  // Function to update an existing note
   function onUpdateNote(id: string, { tags, ...data }: NoteData) {
     setNotes((prevNotes) => {
       return prevNotes.map((note) => {
@@ -67,14 +74,17 @@ function App() {
     });
   }
 
+  // Function to delete a note
   function onDeleteNote(id: string) {
     setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
   }
 
+  // Function to add a new tag
   function addTag(tag: Tag) {
     setTags((prev) => [...prev, tag]);
   }
 
+  // Function to update an existing tag
   function updateTag(id: string, label: string) {
     setTags((prevTags) => {
       return prevTags.map((tag) => {
@@ -87,6 +97,7 @@ function App() {
     });
   }
 
+  // Function to delete a tag
   function deleteTag(id: string) {
     setTags((prevTags) => {
       return prevTags.filter((tag) => tag.id !== id);
@@ -96,6 +107,7 @@ function App() {
   return (
     <Container className="my-4">
       <Routes>
+        {/* Route for the NoteList component */}
         <Route
           path="/"
           element={
@@ -107,6 +119,7 @@ function App() {
             />
           }
         />
+        {/* Route for creating a new note */}
         <Route
           path="/new"
           element={
@@ -117,6 +130,7 @@ function App() {
             />
           }
         />
+        {/* Nested routes for viewing and editing a note */}
         <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
           <Route index element={<Note onDelete={onDeleteNote} />} />
           <Route
@@ -130,6 +144,7 @@ function App() {
             }
           />
         </Route>
+        {/* Fallback route to redirect to the NoteList */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Container>
