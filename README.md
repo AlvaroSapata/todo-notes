@@ -56,14 +56,21 @@ This will open the application in your browser at http://localhost:3000.
 
 Manage your notes efficiently with this application. You can:
 
+![View notes](public/Usage3.png)
+- View and filter Notes: All notes are displayed with their tags, and can be filtered by text and tag
+![Create notes](public/Usage0.png)
 - Create New Notes: Click on "Create" to start a new note. Enter a title, add tags, and write your content.
+![Edit notes](public/Usage5.png)
 - Edit Existing Notes: Navigate to a note and click "Edit" to modify its title, content, or tags.
+![Edit Tags](public/Usage6.png)
 - Organize with Tags: Add or update tags to categorize your notes. Tags help in filtering and searching notes.
+![View Notes](public/Usage4.png)
 - View and Delete Notes: Browse your list of notes, view details, and delete notes you no longer need.
+
 - Real-Time Updates: Changes to notes and tags are immediately reflected in the list and detail views.
+
 - The application supports persistent storage using local storage, so your notes and tags are saved across sessions. Use the intuitive interface to manage your notes efficiently and stay organized.
 
-![Home Screen](public/Usage1.png)
 
 ## Contributing
 Contributions are welcome! If you would like to contribute to this project, please follow these steps:
